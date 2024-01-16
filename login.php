@@ -94,8 +94,9 @@ if (isset($_POST['submit'])) {
       src="https://kit.fontawesome.com/ce7a0231d9.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="icon" type="image/x-icon" href="includes/logo.png">
     <link rel="stylesheet" href="includes/css.css" />
-    <title>Home</title>
+    <title>Login</title>
     <style>
         body {
             padding-top: 56px;
@@ -164,7 +165,7 @@ if (isset($_POST['submit'])) {
     <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
         <div class="container ml-5">
             <!-- Left side: Logo -->
-            <a class="navbar-brand" href="logouthome.php">
+            <a class="navbar-brand" href="index.php">
                 <img src="includes/logo.png" width="80" height="80" class="d-inline-block align-top" alt="Logo">
             </a>
             <!-- Right side: Profile picture and username -->

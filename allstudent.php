@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true ) {
-    header("Location: logouthome.php");
+    header("Location: index.php");
     exit;
 }
 elseif ($_SESSION['role'] != "admin"){
@@ -39,8 +39,8 @@ $result = mysqli_query($conn, $sql);
         });
     </script>
 
-
-    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="includes/logo.png">
+    <title>Dashboard</title>
     <style>
         body {
             padding-top: 56px;
@@ -223,10 +223,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         <button type="button"  class="btn btn-danger delete" id="'.$row['reg id'].'">Delete</button>
         ';
         if($row['auth'] == 1){
-          echo'  <a href="authuser.php?id='.$row['reg id'].'"><button class="btn btn-success ">Active</button></a>';
+            echo'<button class="btn btn-success active " id="'.$row['reg id'].'">Active</button>';
         }
         else{
-            echo'<a href="authuser.php?id='.$row['reg id'].'"><button class="btn btn-danger">Inactive</button></a>';
+            echo'<button class="btn btn-danger inactive" id="'.$row['reg id'].'">Inactive</button>';
         }
         
         echo '
@@ -259,6 +259,42 @@ deletes = document.getElementsByClassName('delete');
         if (confirm("Are you sure you want to delete this User!")) {
         //   console.log("yes");
           window.location = `deleteuser.php?id=${sno}`;
+          
+        }
+        else {
+        //   console.log("no");
+        }
+      })
+    })
+
+    active = document.getElementsByClassName('active');
+    Array.from(active).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        // console.log("edit ");
+        sno = e.target.id;
+        // console.log(sno);
+
+        if (confirm("Are you sure you want to de-activate this User!")) {
+        //   console.log("yes");
+          window.location = `authuser.php?id=${sno}`;
+          
+        }
+        else {
+        //   console.log("no");
+        }
+      })
+    })
+
+    inactive = document.getElementsByClassName('inactive');
+    Array.from(inactive).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        // console.log("edit ");
+        sno = e.target.id;
+        // console.log(sno);
+
+        if (confirm("Are you sure you want to activate this User!")) {
+        //   console.log("yes");
+          window.location = `authuser.php?id=${sno}`;
           
         }
         else {

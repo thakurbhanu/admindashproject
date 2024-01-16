@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Preview Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         /* Add some basic styling for demonstration purposes */
         body {
@@ -16,8 +18,8 @@
         }
 
         #image-preview {
-            max-width: 300px;
-            max-height: 300px;
+            width: 1px;
+            height: 1px;
             margin: 10px 0;
         }
     </style>
@@ -29,7 +31,9 @@
         <input type="file" id="file-input" name="file" accept="image/*" onchange="previewImage()">
 
         <!-- Image preview container -->
+        
         <div id="image-preview"></div>
+
     </form>
 
     <script>
@@ -52,6 +56,7 @@
                         // Create an image element and set its source to the preview URL
                         var img = document.createElement('img');
                         img.src = e.target.result;
+                        img.setAttribute("height", "100px");
 
                         // Append the image to the preview container
                         imagePreview.appendChild(img);
@@ -65,6 +70,8 @@
                 }
             }
         }
+
+        
     </script>
 
 </body>

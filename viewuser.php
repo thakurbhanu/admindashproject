@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true ) {
-    header("Location: logouthome.php");
+    header("Location: index.php");
     exit;
 }
 elseif ($_SESSION['role'] != "admin"){
@@ -23,6 +23,7 @@ include('includes/dbconnect.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>User Profile</title>
+    <link rel="icon" type="image/x-icon" href="includes/logo.png">
     <style>
         body {
             background-color: #f8f9fa;
@@ -184,7 +185,7 @@ include('includes/dbconnect.php');
 <div class="container profile-container">
 
     <div class="text-center ">
-    <a class="back-btn" href="javascript:window. history. back();"><button class=" btn btn-primary">Back</button>
+    <a class="back-btn" href="javascript:window. history. back();"><button class=" btn btn-outline-primary">Back</button>
 </a>
         
     <?php

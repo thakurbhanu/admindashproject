@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
-    header("Location: logouthome.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -88,7 +88,8 @@ $result = mysqli_query($conn, $sql);
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="includes/css.css" />
-    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="includes/logo.png">
+    <title>Chanmge password</title>
     <style>
         body {
             padding-top: 56px;
@@ -329,10 +330,12 @@ $result = mysqli_query($conn, $sql);
 
 
         <div class="field ml-2 d-flex flex-row justify-content-center">
+            
           <button class="btn btn-sm btn-primary ml-2 mt-0" type="submit"   name="submit" value="submit">Change Password</button>
         </div>
-
+       <p class="mx-3 mt-3 px-5"> Go to home Page<a href="admindash.php"> Home</a> </p>
       </form>
+      
     </div>
     </div>
                 

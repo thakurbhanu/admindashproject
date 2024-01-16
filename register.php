@@ -12,6 +12,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
 $uploadOK = 1;
 $showresult = false;
 $filealert = false;
+$success = false;
 
 if(isset($_POST['submit'])){
   include 'includes/dbconnect.php';
@@ -61,7 +62,18 @@ if(isset($_POST['submit'])){
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
-                header("Location: login.php");
+                // header("Location: login.php");
+                $to = $email;
+                $subject = "Registration Confirmation";
+                // $otp = rand(3000,8000);
+                $message = "Your account has been registerd , Wait until next mail when your registration approved by admin ";
+                // $message .= "$otp";
+                $headers = "From: bhanusinghbhadouriya5014@gmail.com";
+                
+                $res = mail($to, $subject, $message, $headers);
+                if ($res){
+                  $success = true;
+                }
             }
         }
     }
@@ -81,8 +93,9 @@ if(isset($_POST['submit'])){
       src="https://kit.fontawesome.com/ce7a0231d9.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="icon" type="image/x-icon" href="includes/logo.png">
     <link rel="stylesheet" href="includes/css.css" />
-    <title>Home</title>
+    <title>Register</title>
     <style>
         body {
             padding-top: 56px;
@@ -158,7 +171,7 @@ if(isset($_POST['submit'])){
     <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
         <div class="container ml-5">
             <!-- Left side: Logo -->
-            <a class="navbar-brand" href="logouthome.php">
+            <a class="navbar-brand" href="index.php">
                 <img src="includes/logo.png" width="80" height="80" class="d-inline-block align-top" alt="Logo">
             </a>
             <!-- Right side: Profile picture and username -->
@@ -220,6 +233,12 @@ if(isset($_POST['submit'])){
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>';
         }
+        if($success) {
+          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Success!</strong> You have registerd check email for confirmation !.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+      }
         ?>
     <div class="row1 d-flex flex-row justify-content-center">
 <div class="wrapper">
@@ -310,9 +329,12 @@ if(isset($_POST['submit'])){
         </div>
         <div class="content">
         <label style="color:#39a1ad;" for="role">Choose a Photo:</label>
-          <input style="color:#39a1ad;" type="file" name="photo">
-        </div>
+          <input style="color:#39a1ad;" type="file" accept="image/*" id="file-input" name="photo" onchange="previewImage()">
         
+        </div>
+        <!-- Image preview container -->
+        
+        <div id="image-preview"></div>
 
         <div class="field d-flex flex-row justify-content-center">
           <button class="btn btn-info" type="submit" name="submit" value="submit">Register</button>
@@ -337,5 +359,43 @@ if(isset($_POST['submit'])){
     include('includes/jsvalidation.php')
       ?>
     </script>
+    <script>
+        function previewImage() {
+            var fileInput = document.getElementById('file-input');
+            var imagePreview = document.getElementById('image-preview');
+
+            // Clear any previous preview
+            imagePreview.innerHTML = '';
+
+            // Check if a file is selected
+            if (fileInput.files.length > 0) {
+                var file = fileInput.files[0];
+
+                // Check if the file is an image
+                if (file.type.match(/^image\//)) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        // Create an image element and set its source to the preview URL
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.setAttribute("height", "100px");
+
+                        // Append the image to the preview container
+                        imagePreview.appendChild(img);
+                    };
+
+                    // Read the file as a data URL
+                    reader.readAsDataURL(file);
+                } else {
+                    // Display an error message if the selected file is not an image
+                    imagePreview.innerHTML = '<p>Selected file is not an image.</p>';
+                }
+            }
+        }
+
+        
+    </script>
+
 </body>
 </html>
