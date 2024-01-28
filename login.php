@@ -21,10 +21,11 @@ if (isset($_POST['submit'])) {
     // Sanitize and validate user inputs
     $email =  $_POST["email"];
     $password = $_POST["pass"];
+    $recaptcha = $_POST['g-recaptcha-response'];
 
 
     // Check for empty fields
-    if (empty($email) || empty($password)) {
+    if (empty($email) || empty($password) || empty($recaptcha)) {
         $inpute = true;
     } 
     else {
@@ -94,6 +95,7 @@ if (isset($_POST['submit'])) {
       src="https://kit.fontawesome.com/ce7a0231d9.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="icon" type="image/x-icon" href="includes/logo.png">
     <link rel="stylesheet" href="includes/css.css" />
     <title>Login</title>
@@ -273,13 +275,14 @@ if (isset($_POST['submit'])) {
           <i id="passNCrrLogo" class="fa-solid fa-circle-check"></i>
           <label style="color:blue;">Password</label>
         </div>
+        <br>
 
-        
+        <div class="g-recaptcha" data-sitekey="6LeM4F4pAAAAAMmWygkMoSdzZfq5KtsjZDtmVqTt"></div>
         <div class="content">
           <a href="forgotpass1.php">Forgot Password?</a>
         </div>
         <div class="field d-flex flex-row justify-content-center">
-          <button class="btn btn-primary" type="submit" name="submit" value="submit">Login</button>
+          <input class="btn btn-primary" type="submit" name="submit" value="submit"  />
         </div>
       </form>
     </div>
