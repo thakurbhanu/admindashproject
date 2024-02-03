@@ -45,11 +45,27 @@ if (isset($_POST['submit'])) {
             session_start();
 
             if($row['auth'] == "1"){
+                if(isset($_POST['rememberme'])){
+                    if (isset($_COOKIE['emailcookie'])) {
+                        unset($_COOKIE['emailcookie']);
+                        unset($_COOKIE['passwordcookie']);
+                    }
+                    setcookie('emailcookie',$email,time()+86400);
+                    setcookie('passwordcookie',$password,time()+86400);
+                    
+                }
+                
 
             if($row['role'] == "admin"){
                 $_SESSION['loggedin'] = true;
                 $_SESSION['id'] = $row['reg id'];
                 $_SESSION['role'] = "admin";
+                header("Location: admindash.php");
+            }
+            else if($row['role'] == "Employee"){
+                $_SESSION['loggedin'] = true;
+                $_SESSION['id'] = $row['reg id'];
+                $_SESSION['role'] = "Employee";
                 header("Location: admindash.php");
             }
             else{
@@ -161,6 +177,7 @@ if (isset($_POST['submit'])) {
             margin: 20px;
             font-family: Arial, Helvetica, sans-serif;
         }
+        
     </style>
 </head>
 <body>
@@ -187,33 +204,6 @@ if (isset($_POST['submit'])) {
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <!-- <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="logouthome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
     <div class="container main-content-container col-md-10 mt-5 pt-3 px-0">
 
@@ -250,6 +240,7 @@ if (isset($_POST['submit'])) {
             oninput="validateEmail()"
             id="emailId"
             name="email"
+            value="<?php if(isset($_COOKIE['emailcookie'])) {echo $_COOKIE['emailcookie'];} ?>"
             style="padding-right: 43px"
             type="email"
           />
@@ -266,7 +257,9 @@ if (isset($_POST['submit'])) {
 
         <!-- password input -->
         <div class="field">
-          <input oninput="validatePass()" name="pass" id="passwordF" type="password" />
+          <input oninput="validatePass()" name="pass" 
+          value="<?php if(isset($_COOKIE['passwordcookie'])) {echo $_COOKIE['passwordcookie'];} ?>"
+          id="passwordF" type="password" />
           <i
             id="passNErrLogo"
             class="f-name-err-logo fa-solid fa-circle-exclamation"
@@ -278,6 +271,11 @@ if (isset($_POST['submit'])) {
         <br>
 
         <div class="g-recaptcha" data-sitekey="6LeM4F4pAAAAAMmWygkMoSdzZfq5KtsjZDtmVqTt"></div>
+        <br>
+        <div>
+            <input type="checkbox" value="isrememberme" name="rememberme" id="remember">
+            <label for="remember"> Remember me</label>
+        </div>
         <div class="content">
           <a href="forgotpass1.php">Forgot Password?</a>
         </div>

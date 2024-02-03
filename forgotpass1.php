@@ -213,9 +213,7 @@ if (isset($_POST['submit'])){
                   <li class="nav-item mr-2 mx-2 " style="font-size:30px;">
                     <a href="login.php"><button class="btn btn-primary mr-2">Login</button></a>
                   </li>
-                  <!-- <li class="nav-item m-1"style="font-size:20px;">
-                    <a href="">/</a>
-                  </li> -->
+                 
                   <li class="nav-item"style="font-size:30px;">
                     <a href="register.php"><button class="btn btn-outline-info">Register</button></a>
                   </li>
@@ -224,33 +222,6 @@ if (isset($_POST['submit'])){
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <!-- <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="logouthome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
     <div class="container main-content-container col-md-10 mt-5 pt-3 px-0">
 
@@ -351,10 +322,6 @@ if (isset($_POST['submit'])){
     </div>
     
 
-    
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>

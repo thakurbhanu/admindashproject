@@ -143,11 +143,6 @@ $result = mysqli_query($conn, $sql);
     <nav class="d-none d-md-block sidebar">
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="adminloginhome.php">
-                        Home
-                    </a>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="admindash.php">
                         Admin Dashboard

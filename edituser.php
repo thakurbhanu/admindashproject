@@ -12,17 +12,18 @@ if ($_SESSION['role'] == "admin"){
 
 
 if(isset($_POST['submit'])){
+  $id = $_SESSION['id'];
     include 'includes/dbconnect.php';
   
     $name = $_POST["name"];
       
       $phone = $_POST["phone"];
       
-      $role = $_POST["role"];
-      if(isset($_FILES['photo'])){
+      // $role = $_POST["role"];
+      $fname = $_FILES['photo']['name'];
+      if($fname !="" ){
 
         $target_dir = "includes/uploads/";
-      $fname = $_FILES['photo']['name'];
       $tempfname = $_FILES['photo']['tmp_name'];
       $fsize = $_FILES['photo']['size'];
       $ftype = $_FILES['photo']['type'];
@@ -46,22 +47,14 @@ if(isset($_POST['submit'])){
         } else {
             move_uploaded_file($tempfname, $target_dir . $fname);
         }
-      }
-  
-      
-  
-  
-    
-          // Hash the password
-          $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-          $existsql = "SELECT * FROM `stu_tech` WHERE email = '$email'";
+        $existsql = "SELECT * FROM `stu_tech` WHERE `reg id` = $id";
           $result = mysqli_query($conn, $existsql);
           $numExistsRows = mysqli_num_rows($result);
   
           if ($numExistsRows = 0) {
               $showresult = true;
           } else {
-              $sql = "UPDATE `stu_tech` SET `name` = '$name', `phone` = '$phone', `role` = '$role', `image` = '$target_file' WHERE `stu_tech`.`reg id` = 2;";
+              $sql = "UPDATE `stu_tech` SET `name` = '$name', `phone` = '$phone', `image` = '$target_file' WHERE `stu_tech`.`reg id` = $id;";
               $result = mysqli_query($conn, $sql);
   
               if ($result) {
@@ -71,7 +64,27 @@ if(isset($_POST['submit'])){
                   
               }
           }
-      
+      }
+      else{
+        $existsql = "SELECT * FROM `stu_tech` WHERE `reg id` = $id";
+        $result = mysqli_query($conn, $existsql);
+        $numExistsRows = mysqli_num_rows($result);
+
+        if ($numExistsRows = 0) {
+            $showresult = true;
+        } else {
+            $sql = "UPDATE `stu_tech` SET `name` = '$name', `phone` = '$phone' WHERE `stu_tech`.`reg id` = $id;";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                // header("Location: login.php");
+                
+                  $success = true;
+                
+            }
+        }
+      }
+  
   
   }
   
@@ -182,43 +195,13 @@ if(isset($_POST['submit'])){
                   </li>
                   <li class="nav-item m-1"style="font-size:20px;">
                     <a class="back-btn" href="javascript:window. history. back();"><button class=" btn btn-outline-primary">Back</button>
-</a>
+                   </a>
                   </li>
-                  <!-- <li class="nav-item"style="font-size:30px;">
-                     <a href="register.php"><button class="btn btn-outline-info"></button></a> 
-                  </li> -->
                 </ul>
               </div>
         </div>
     </nav>
 
-    <!-- Sidebar
-    <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="logouthome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
     <div class="container main-content-container col-md-10 mt-5 pt-3 px-0">
     <?php
@@ -263,24 +246,6 @@ if(isset($_POST['submit'])){
           <label>Full Name</label>
         </div>
 
-        <!-- Email input -->
-        <!-- <div class="field">
-          <input
-            oninput="validateEmail()"
-            id="emailId"
-            name="email"
-            style="padding-right: 43px"
-            type="email"
-          />
-          <i
-            id="emailErrLogo"
-            class="f-name-err-logo fa-solid fa-circle-exclamation"
-            title="Invalid Email (for ex- abc123@gmail.com)"
-          ></i>
-          <i id="emailCrrLogo" class="fa-solid fa-circle-check"></i>
-          <label>Email Address</label>
-        </div> -->
-
         <!-- phone number input -->
         <div class="field">
           <input oninput="validatePhone()" id="phoneNumber" name="phone" type="text" />
@@ -296,15 +261,6 @@ if(isset($_POST['submit'])){
         
 
         
-        <hr>
-        <div class="content">
-        <label style="color:#39a1ad; margin-right:10%;" for="role">Choose a Role:</label>
-          <select style="color:#39a1ad; margin-right:40%;" name="role" id="role">
-          <option value="NULL">SELECT</option>
-            <option value="employee">Employee</option>
-            <option value="student">Student</option>
-          </select>
-        </div>
         <div class="content">
         <label style="color:#39a1ad;" for="role">Choose a Photo:</label>
           <input style="color:#39a1ad;" type="file" accept="image/*" id="file-input" name="photo" onchange="previewImage()">
@@ -323,14 +279,8 @@ if(isset($_POST['submit'])){
                 
     </div>
     
-
-    
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+    
     <script>
 
       <?php
@@ -356,7 +306,8 @@ echo '
 <script>
 document.getElementById("fname").value = '. "'$name'" .';
 document.getElementById("phoneNumber").value = '. "'$phone'" .';
-document.getElementById("role").value = '. "'$role'" .';
+
+
 
 </script>
 ';

@@ -131,12 +131,14 @@ $result = mysqli_query($conn, $sql);
             <div class="collapse navbar-collapse justify-content-end" style="margin-left:73%">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php
+                    <?php
                             while($row = mysqli_fetch_assoc($result)){
+                                echo '
+                        <a class="nav-link dropdown-toggle" href="'.$row['image'].'" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
                                 
                            
-                            echo '   
+                              
                             
                             <img src="'.$row['image'].'" width="50" height="50" class="rounded-circle profile-logo mx-3" alt="Profile">'
                             .$row['name'].'
@@ -222,12 +224,8 @@ $result = mysqli_query($conn, $sql);
 </div>
 </div>
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

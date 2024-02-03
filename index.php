@@ -60,12 +60,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
         .carousel-indicators {
             bottom: 10px;
         }
-        /* .main-content-container{
-            position:absolute;
-            left: 19.3%;
-            top: 10%;
-            width: 80.5%;
-        } */
+        
         .abt-head{
             margin: 10px;
             font-weight: bold;
@@ -116,33 +111,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <!-- <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="loginhome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admindash.php">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
     <div class="container main-content-container ">
         <div id="carouselExampleInterval" class="carousel slide mx-0 px-0" data-bs-ride="carousel">

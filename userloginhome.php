@@ -25,6 +25,8 @@ $result = mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+
     <title>Home</title>
     <link rel="icon" type="image/x-icon" href="includes/logo.png">
     <style>
@@ -131,6 +133,7 @@ $result = mysqli_query($conn, $sql);
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="userprofile.php">User Profile</a>
                             <a class="dropdown-item" href="changepass.php">Change Password</a>
+                            <a class="dropdown-item" href="payment.php">Upgrade Premium</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
@@ -140,35 +143,79 @@ $result = mysqli_query($conn, $sql);
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <!-- <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="loginhome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admindash.php">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
-    <div class="container main-content-container col-md-10 mx-0 px-0">
+
+
+    <?php
+    include('includes/dbconnect.php');
+    $id = $_SESSION['id'];
+    $sql = "select * from stu_tech where `reg id` = '$id'";
+    $result = mysqli_query($conn, $sql);
+while($row = mysqli_fetch_assoc($result)){
+
+    $role = $row['role'];
+    $tech = $row['tech'];
+}
+
+    if($role == "Employee"){
+        include('includes/dbconnect.php');
+
+        echo '  
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <h3 class="my-3" style="text-decoration:underline;">All registerd students:</h3>
+      <table id="myTable" class="table table-hover">
+    <thead>
+        <tr>
+            <th>S no.</th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        ';
+
+        $sql = "SELECT * FROM `stu_tech`";
+    $result = mysqli_query($conn, $sql);
+      $sr = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
+    if($row['role'] != 'admin' && $row['role'] == "student" && $tech == $row['tech'] && $row['auth'] == "1"){
+        echo'
+        
+        <tr>
+        <td >'.$sr.'</td>
+        <td>'.$row['name'] .'</td>
+        <td>'. $row['email'].'</td>
+        <td>'. $row['phone']. '</td>
+        <td>'. $row['role']. '</td>
+        <td>
+        <a href="viewuser.php?id='.$row['reg id'].'"><button class="btn btn-info">View</button></a>
+        
+        
+        </td>
+        </tr>
+       
+        ';
+          $sr++;
+    }
+
+}
+echo ' 
+
+</tbody>
+</table>';
+    }
+    else{
+        echo' 
+        
+        <div class="container main-content-container col-md-10 mx-0 px-0">
         <div id="carouselExampleInterval" class="carousel slide mx-0 px-0" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2000">
@@ -244,6 +291,16 @@ Source: Conversation with Bing, 8/1/2024
 
             </div>
         </div>
+
+        ';
+    }
+
+
+
+    ?>
+
+
+    
         <hr>
         <footer>
             <div class="text-center">

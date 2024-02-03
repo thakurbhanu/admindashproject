@@ -50,12 +50,8 @@ if (isset($_POST['submit'])) {
                     
 
                 } else {
-                    // Passwords do not match
+                
                     $sucess = true;
-                    // $sql = "UPDATE `stu_tech` SET `password` = '$hpass' WHERE `stu_tech`.`email` = '$email'";
-                    // $result = mysqli_query($conn, $sql);
-
-                    
                 }
                 
             }
@@ -203,33 +199,6 @@ $result = mysqli_query($conn, $sql);
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <!-- <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="logouthome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
     <div class="container main-content-container col-md-10 mt-5 pt-3 px-0">
 
@@ -290,12 +259,7 @@ $result = mysqli_query($conn, $sql);
 
         <div class="field">
           <input oninput="validatePass()" name="oldpass" id="password0" type="password" />
-          <!-- <i
-            id="passNErrLogo"
-            class="f-name-err-logo fa-solid fa-circle-exclamation"
-            title="Create strong password (for ex- Abc@123)"
-          ></i>
-          <i id="passNCrrLogo" class="fa-solid fa-circle-check"></i> -->
+          
           <label style="color:blue;">Current Password</label>
         </div>
 
@@ -344,8 +308,6 @@ $result = mysqli_query($conn, $sql);
 
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script>
@@ -353,7 +315,7 @@ $result = mysqli_query($conn, $sql);
             let eval = document.getElementById("emailId").value;
             document.getElementById("emailId").value = eval;
         }
-        // document.getElementById("emailId").value = eval;
+        
         
 
       <?php

@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
     $phone = $_POST["phone"];
     $password = $_POST["pass"];
     $role = $_POST["role"];
+    $tech = $_POST["tech"];
 
     $target_dir = "includes/uploads/";
     $fname = $_FILES['photo']['name'];
@@ -58,7 +59,7 @@ if(isset($_POST['submit'])){
         if ($numExistsRows > 0) {
             $showresult = true;
         } else {
-            $sql = "INSERT INTO `stu_tech` (`name`, `email`, `phone`, `password`, `role`, `image`, `auth`, `time`) VALUES ('$name', '$email', '$phone', '$hashed_password', '$role', '$target_file', '0', current_timestamp())";
+            $sql = "INSERT INTO `stu_tech` (`name`, `email`, `phone`, `password`, `role`, `tech`, `image`, `auth`, `time`) VALUES ('$name', '$email', '$phone', '$hashed_password', '$role', '$tech', '$target_file', '0', current_timestamp())";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -72,7 +73,12 @@ if(isset($_POST['submit'])){
                 
                 $res = mail($to, $subject, $message, $headers);
                 if ($res){
+                  if (isset($_COOKIE['emailcookie'])) {
+                    unset($_COOKIE['emailcookie']);
+                    unset($_COOKIE['passwordcookie']);
+                }
                   $success = true;
+
                 }
             }
         }
@@ -191,33 +197,6 @@ if(isset($_POST['submit'])){
         </div>
     </nav>
 
-    <!-- Sidebar
-    <nav class="d-none d-md-block sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="logouthome.php">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Admin Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Employee
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Student
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <!-- crousal -->
     <div class="container main-content-container col-md-10 mt-5 pt-3 px-0">
     <?php
@@ -323,10 +302,22 @@ if(isset($_POST['submit'])){
         <label style="color:#39a1ad; margin-right:10%;" for="role">Choose a Role:</label>
           <select style="color:#39a1ad; margin-right:40%;" name="role" id="role">
           <option value="NULL">SELECT</option>
-            <option value="employee">Employee</option>
+            <option value="Employee">Employee</option>
             <option value="student">Student</option>
           </select>
         </div>
+        <hr>
+
+
+        <div class="content">
+        <label style="color:#39a1ad; margin-right:10%;" for="tech">Choose your tech:</label>
+          <select style="color:#39a1ad; margin-right:40%;" name="tech" id="tech">
+          <option value="NULL">SELECT</option>
+            <option value="php">PHP</option>
+            <option value="react">REACT</option>
+          </select>
+        </div>
+        <hr>
         <div class="content">
         <label style="color:#39a1ad;" for="role">Choose a Photo:</label>
           <input style="color:#39a1ad;" type="file" accept="image/*" id="file-input" name="photo" onchange="previewImage()">
@@ -347,12 +338,9 @@ if(isset($_POST['submit'])){
     
 
     
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script> -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+  
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+    
     <script>
 
       <?php

@@ -30,7 +30,6 @@ $result = mysqli_query($conn, $sql);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
@@ -143,11 +142,6 @@ $result = mysqli_query($conn, $sql);
     <nav class="d-none d-md-block sidebar">
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="adminloginhome.php">
-                        Home
-                    </a>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         Admin Dashboard
@@ -243,11 +237,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     </tbody>
 </table>
-               <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
+               
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
